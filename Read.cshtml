@@ -1,0 +1,104 @@
+﻿<html>
+    <head>
+        <title></title>
+        <style>
+            body {margin:0px;
+            }
+            #container {height:600px;width:100%;background-color:gray;
+            }
+            #container-left {height:600px;width:29%;background-color:white;float:left;border-right:groove;
+            }
+            #container-right {height:600px;width:70%;background-color:white;float:left;
+            }
+            #side_menu {
+                margin:0px;padding:30px;
+            }
+            #side_menu>li {list-style:none;padding:6px 25px;border-bottom:groove;
+            }
+                #side_menu > li > a {text-decoration:none;
+                }
+                #side_menu > li > a:hover {text-decoration:underline;text-decoration-color:red;
+                }
+                                           #top_menu {
+                margin:0px;padding:10px;
+            }
+            #top_menu>li {list-style:none;padding:6px 25px;border-bottom:groove;display:inline-block;
+            }
+                #top_menu > li > a {text-decoration:none;
+                }
+                #top_menu > li > a:hover {text-decoration:underline;text-decoration-color:red;
+                }
+            label {color:red;font-size:20px;
+            }
+            span {color:blue;font-size:13px;
+            }
+        </style>
+    </head>
+    <body>
+         <h2>Welcome <span style="color:red">@ViewBag.name</span> <label style="margin-left:600px">@Html.ActionLink("Logout","Logout","Home")</label></h2>
+         <hr />
+        <div id="container"> 
+            <div id="container-left"> 
+                <ul id="side_menu">
+                            <li><a href="~/Home/Compose">Compose</a></li>
+                            <li><a href="~/Home/User_Profile">Inbox (@ViewBag.Count)</a></li>
+                            <li><a href="~/Home/Sent">Sent</a></li>
+                            <li><a href="~/Home/Draft">Draft</a></li>
+                            <li><a href="~/Home/Trash">Trash</a></li>
+                        </ul>
+            </div>
+            <div id="container-right">
+                       <ul id="top_menu">
+                            <li><a href="~/Home/User_Profile">Primary</a></li>
+                            <li><a href="~/Home/User_Profile">Social</a></li>
+                            <li><a href="~/Home/User_Profile">Promotional</a></li>
+                        </ul>
+                <h2>Read</h2>
+                        @{
+                            var num = ViewBag.num;
+                            var details = ViewBag.details;
+                        }
+                @{
+                    if(num==1)
+                    {
+                        <label>Sender</label><br />
+                        <span>@details.Sender</span><br />
+                        <label>Subject</label><br />
+                        <span>@details.Subject</span><br />
+                        <label>Body</label><br />
+                        <span>@details.Body</span><br />
+                        <label>CrDate</label><br />
+                        <span>@details.CrDate</span><br />
+                    }
+                    else if(num==2)
+                    {
+                        <label>Receiver</label><br />
+                        <span>@details.Receiver</span><br />
+                        <label>Subject</label><br />
+                        <span>@details.Subject</span><br />
+                        <label>Body</label><br />
+                        <span>@details.Body</span><br />
+                        <label>CrDate</label><br />
+                        <span>@details.CrDate</span><br />
+                    }
+                    else if(num==4)
+                    {
+                         <label>Sender</label><br />
+                        <span>@details.Sender</span><br />
+                        <label>Subject</label><br />
+                        <span>@details.Subject</span><br />
+                        <label>Body</label><br />
+                        <span>@details.Body</span><br />
+                        <label>CrDate</label><br />
+                        <span>@details.CrDate</span><br />   
+                    }      
+                }
+                <br />
+                <br />
+                @Html.ActionLink("Rply", "Rply", new { id=details.Id,num=num}) | 
+                @Html.ActionLink("Forward", "Forward", new { id=details.Id,num=num}) | 
+                 @Html.ActionLink("Delete", "Delete", new { id=details.Id,num=num}) 
+            </div>
+        </div>
+    </body>
+</html>
